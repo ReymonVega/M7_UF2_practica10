@@ -5,7 +5,7 @@ from exerciciB import population_by_city, density_km2_by_city, density_m2_by_cit
 def main():
     # Cargar el archivo .csv en un DataFrame
     df = pd.read_csv('parteB.csv')
-
+    
     # Obtener las 10 ciudades con mayor población
     top_10_cities = df.sort_values(by='Population', ascending=False).head(10)
 
