@@ -1,13 +1,17 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
-def population_by_city(df):
-    population = df.groupby('City')['Population'].sum().sort_values(ascending=False)
-    return population
+def total_population(df):
+    return df.groupby('City')['Population'].sum()
 
-def density_km2_by_city(df):
-    density_km2 = df.groupby('City')['Density KM2'].mean().sort_values(ascending=False)
-    return density_km2
+def density_km2(df):
+    return df.groupby('City')['Density KM2'].sum()
 
-def density_m2_by_city(df):
-    density_m2 = df.groupby('City')['Density M2'].mean().sort_values(ascending=False)
-    return density_m2
+def density_m2(df):
+    return df.groupby('City')['Density  M2'].sum()
+
+def plot_pie(df, column):
+    data = df.groupby('City')[column].sum()
+    data.plot(kind='pie', autopct='%.1f%%', legend=True)
+    plt.axis('equal')
+    plt.show()
