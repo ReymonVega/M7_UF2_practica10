@@ -1,32 +1,20 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-from exerciciB import population_by_city, density_km2_by_city, density_m2_by_city
+import exerciciB as f
+
+df = pd.read_csv('List of cities proper by population density11.csv')
 
 def main():
-    # Cargar el archivo .csv en un DataFrame
-    df = pd.read_csv('parteB.csv')
-    
-    # Obtener las 10 ciudades con mayor población
-    top_10_cities = df.sort_values(by='Population', ascending=False).head(10)
+    total_pop = f.total_population(df)
+    print(total_pop)
+    f.plot_pie(total_pop, 'Population')
 
+    density_km = f.density_km2(df)
+    print(density_km)
+    f.plot_pie(density_km, 'Density KM2')
 
-    # Mostrar la población total por ciudad
-    population = population_by_city(top_10_cities)
-    population.plot.pie(autopct='%1.1f%%')
-    plt.title('Población total por ciudad')
-    # plt.show()
-    print(population)
+    density_m = f.density_m2(df)
+    print(density_m)
+    f.plot_pie(density_m, 'Density  M2')
 
-    # Mostrar la densidad por KM2 por ciudad
-    density_km2 = density_km2_by_city(top_10_cities)
-    density_km2.plot.pie(autopct='%1.1f%%')
-    plt.title('Densidad por KM2 por ciudad')
-    # plt.show()
-
-    # Mostrar la densidad por M2 por ciudad
-    density_m2 = density_m2_by_city(top_10_cities)
-    density_m2.plot.pie(autopct='%1.1f%%')
-    plt.title('Densidad por M2 por ciudad')
-    # plt.show()
-
-main()
+if __name__ == "__main__":
+    main()
